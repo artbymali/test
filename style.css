@@ -1,0 +1,284 @@
+::-webkit-scrollbar {
+    width: 10px;
+    cursor: pointer;
+    display: block;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+  }
+
+::-webkit-scrollbar-thumb {
+    width: 20px;
+    border-radius: 50px;
+    background: #C9F31D;
+    cursor: pointer;
+}
+
+/* main {
+    transform: none;
+    opacity: 1;
+    pointer-events: all
+}
+
+.c-scrollbar {
+    opacity: 0 !important; 
+    pointer-events: auto;
+    position: relative;
+} */
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #000000;
+    color: white;
+    text-decoration: none;
+    list-style: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+#loader {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: #000;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    gap: 10px;
+    font-family: poppins;
+}
+
+#loader h3{
+    font-size: 2vw;
+    font-weight: 500;
+    background: transparent;
+}
+
+header{
+    padding-top: 20px;
+    width: 100%;
+}
+
+.header-container{
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: poppins;
+}
+
+.logo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.logo h4 a {
+    font-size: 26px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+menu ul {
+    display: flex;
+    gap: 2.5rem;
+}
+
+menu ul li a {
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+menu ul li a:hover {
+    color: #D2DE24;
+}
+
+.Contact-button button {
+    position: relative;
+    display: inline-flex;
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 14px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.Contact-button button:hover {
+    color: black;
+}
+
+.Contact-button button a {
+    position: relative;
+    z-index: 1;
+    background: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.Contact-button button:hover a {
+    color: black;
+}
+
+.Contact-button button::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #D2DE24;
+    transition: width 0.4s, height 0.4s;
+}
+
+.Contact-button button:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.Home {
+    width: 100%;
+    position: relative;
+}
+
+.Home-container {
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Home-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    position: relative;
+}
+
+.Home-content-top {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.Home-content-top img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.Home-content-x {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Align child elements vertically */
+    margin-top: 30px;
+}
+
+.Home-content-middle {
+    position: relative;
+}
+
+.Home-content-middle img {
+    width: 650px;
+    position: absolute;
+    top: 20px;
+    transform: translate(-60%, -50%); 
+    z-index: 1;
+    background: transparent;
+}
+
+.Home-content-left {
+    width: 30%;
+}
+
+.Home-content-left h2 {
+    font-family: Calistoga;
+    font-weight: 400;
+    font-size: 60px;
+    padding-bottom: 10px;
+    line-height: 1.09;
+}
+
+.Home-content-left p {
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: sans-serif;
+    color: #A6A8Ab;
+    padding-bottom: 30px;
+}
+
+.Home-content-left button {
+    border: none;
+    outline: none;
+    background: #C9F31D;
+    padding: 12px 26px;
+    color: black;
+    font-family: poppins;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    /* transition: 0.3s ease-in-out; */
+}
+
+.Home-content-left button:hover {
+    background: white;
+    color: black;
+}
+
+
+.Home-content-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.Home-content-avard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Home-content-avard h2 {
+    font-family: Calistoga;
+    font-weight: 400;
+    font-size: 35px;
+    padding-bottom: 5px;
+}
+
+.Home-content-avard p {
+    font-family: inter;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #cbcbce;
+}
