@@ -1,34 +1,3 @@
-::-webkit-scrollbar {
-    width: 10px;
-    cursor: pointer;
-    display: block;
-}
-
-::-webkit-scrollbar-track {
-    background: none;
-  }
-
-::-webkit-scrollbar-thumb {
-    width: 20px;
-    border-radius: 50px;
-    background: #C9F31D;
-    cursor: pointer;
-}
-
-/* main {
-    transform: none;
-    opacity: 1;
-    pointer-events: all
-}
-
-.c-scrollbar {
-    opacity: 0 !important; 
-    pointer-events: auto;
-    position: relative;
-} */
-
-
-
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +6,10 @@
     color: white;
     text-decoration: none;
     list-style: none;
+}
+
+.c-scrollbar_thumb {
+    background: rgb(255, 255, 255);
 }
 
 html, body {
@@ -49,7 +22,7 @@ html, body {
     width: 100%;
     position: fixed;
     top: 0;
-    background: #000;
+    background: #000000;
     z-index: 99;
     display: flex;
     align-items: center;
@@ -66,7 +39,9 @@ html, body {
 }
 
 header{
-    padding-top: 20px;
+    padding-block: 20px;
+    position: relative;
+    z-index: 1;
     width: 100%;
 }
 
@@ -81,6 +56,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     font-family: poppins;
+    z-index: 1;
 }
 
 .logo {
@@ -133,6 +109,7 @@ menu ul li a:hover {
 
 .Contact-button button:hover {
     color: black;
+    z-index: 1;
 }
 
 .Contact-button button a {
@@ -200,7 +177,7 @@ menu ul li a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center; /* Align child elements vertically */
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .Home-content-middle {
@@ -274,6 +251,14 @@ menu ul li a:hover {
     font-weight: 400;
     font-size: 35px;
     padding-bottom: 5px;
+}
+
+.Home-content-avard h2::after {
+    content: '+';
+}
+
+.different h2::after {
+    content: '%';
 }
 
 .Home-content-avard p {
