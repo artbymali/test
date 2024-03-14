@@ -94,6 +94,29 @@ function TextReveal() {
 }
 TextReveal();
 
+function numberReveal() {
+  setTimeout(() => {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach((counter) => {
+      counter.innerHTML = '0'
+
+      const updateCounter = () => {
+        const target = +counter.getAttribute('data-target')
+        const c = +counter.innerText;
+
+        const increment = target / 1800;
+
+        if (c < target) {
+          counter.innerText = `${Math.ceil(c + increment)}`;
+          setTimeout(updateCounter, 10)
+        }
+      };
+      updateCounter()
+    })
+  }, 3000)
+}
+numberReveal();
+
 function attachMouseMoveEvent() {
   const btn = document.querySelector('button');
   btn.onmousemove = function (e) {
@@ -109,55 +132,92 @@ attachMouseMoveEvent();
 function init() {
   gsap.registerPlugin(ScrollTrigger);
 
-
-  // --- SETUP START ---
-  // Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
   const locoScroll = new LocomotiveScroll({
-    el: document.querySelector("#main"),
-    smooth: true
+      el: document.querySelector("#main"),
+      smooth: true
   });
-  // each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
+
   locoScroll.on("scroll", ScrollTrigger.update);
 
-  // tell ScrollTrigger to use these proxy methods for the "#main" element since Locomotive Scroll is hijacking things
+  // Configure ScrollTrigger proxy for Locomotive Scroll
   ScrollTrigger.scrollerProxy("#main", {
-    scrollTop(value) {
-      return arguments.length ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true }) : locoScroll.scroll.instance.scroll.y;
-    }, // we don't have to define a scrollLeft because we're only scrolling vertically.
-    getBoundingClientRect() {
-      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-    },
-    // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-    pinType: document.querySelector("#main").style.transform ? "transform" : "fixed"
+      scrollTop(value) {
+          return arguments.length ? locoScroll.scrollTo(value, { duration: 0, disableLerp: true }) : locoScroll.scroll.instance.scroll.y;
+      },
+      getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+      }
   });
 
-  // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
+  // Additional configuration for the header pinType
+  ScrollTrigger.scrollerProxy("#main", {
+      pinType: "fixed"
+  });
+
+  // Refresh and update ScrollTrigger and Locomotive Scroll
   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
   ScrollTrigger.defaults({ scroller: "#main" });
-  // --- SETUP END ---
-
-  // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
   ScrollTrigger.refresh();
-
 }
-init();
 
-setTimeout(() => {
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach((counter) => {
-    counter.innerHTML = '0'
+window.onload = function () {
+  init();
+};
 
-    const updateCounter = () => {
-      const target = +counter.getAttribute('data-target')
-      const c = +counter.innerText;
 
-      const increment = target / 1800;
+function headerScroll() {
+    const header = document.querySelector("header");
+    const headerHeight = header.offsetHeight;
+  
+    function adjustHeader() {
+        header.classList.toggle('scrolled', window.scrollY > 0);
+        if (window.scrollY >= 300) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+  
+        document.body.style.paddingTop = headerHeight + 'px'
+    }
+  
+    adjustHeader();
+  
+    window.addEventListener('scroll', adjustHeader)
+  }
+headerScroll();
 
-      if (c < target) {
-        counter.innerText = `${Math.ceil(c + increment)}`;
-        setTimeout(updateCounter, 10)
-      }
-    };
-    updateCounter()
-  })
-}, 3000) 
+
+function skillReveal() {
+  const scrollers = document.querySelectorAll(".Skill-reveal-container");
+
+  if (!window.matchMedia("(perfers-reduced-motion: reduce)").matches) {
+    addAnimation();
+  }
+
+  function addAnimation() {
+    scrollers.forEach((scroller) => {
+      scroller.setAttribute("data-animated", true);
+
+      const scrollerInner = scroller.querySelector('.Skill-reveal-inner');
+      const scrollercontent = Array.from(scrollerInner.children);
+
+      scrollercontent.forEach(item => {
+        const duplicatedItem = item.cloneNode(true);
+        duplicatedItem.setAttribute('aria-hidden', true);
+        scrollerInner.appendChild(duplicatedItem);
+      })
+    });
+  }
+}
+skillReveal();
+
+
+
+
+
+
+
+
+
+
+
