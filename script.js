@@ -1,28 +1,26 @@
-function loader() {
-  let tl = gsap.timeline();
 
-  tl.from("#loader h3", {
-    x: 40,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.1
-  })
+ function loader() {
+  let tl =  gsap.timeline();
 
-  tl.to("#loader h3", {
+  document.getElementById('HeaderId').style.display = 'none';
+
+   tl.to("#loader h3", {
     opacity: 0,
     x: -30,
     duration: 1,
     stagger: .1
   })
 
-  tl.to("#loader", {
+   tl.to("#loader", {
     opacity: 0
   })
 
-  tl.to("#loader", {
+   tl.to("#loader", {
     display: "none",
     onComplete: function () {
       document.getElementById('loader').style.display = 'none';
+      
+      document.getElementById('HeaderId').style.display = 'block';
       setTimeout(function () {
         gsap.to("#bg-img", { opacity: 1, duration: 0.4 });
       }, 200);
@@ -39,24 +37,34 @@ function loader() {
 loader();
 
 function TextReveal() {
-  setTimeout(function () {
-    gsap.from("#content-left h2", {
+
+  console.log('====================================');
+  console.log('Text Reveal');
+  console.log('====================================');
+
+  setTimeout( function () {
+
+    gsap.from("#content-left  h2", {
       x: -100,
       opacity: 0,
       ease: "power4.inOut",
       duration: 2,
       delay: 1.2, // Slight delay for h2
+
     });
 
-    gsap.from("#content-left p", {
+    
+
+     gsap.from("#content-left p", {
       x: -100,
       opacity: 0,
       ease: "power4.inOut",
       duration: 2,
       delay: 1.4, // Slight delay for p
+       
     });
 
-    gsap.from("#content-left button", {
+     gsap.from("#content-left button", {
       x: -100,
       opacity: 0,
       ease: "power4.inOut",
@@ -64,10 +72,10 @@ function TextReveal() {
       delay: 1.6, // Slight delay for button
     });
 
-  }, 1500);
+  }, 10);
 
-  setTimeout(function () {
-    gsap.from("#content-right-avard-first", {
+  setTimeout(  function () {
+     gsap.from("#content-right-avard-first", {
       x: 50,
       opacity: 0,
       ease: "power4.inOut",
@@ -75,7 +83,7 @@ function TextReveal() {
       delay: 1.1, // Slight delay for h2
     });
 
-    gsap.from("#content-right-avard-second", {
+     gsap.from("#content-right-avard-second", {
       x: 50,
       opacity: 0,
       ease: "power4.inOut",
@@ -83,14 +91,14 @@ function TextReveal() {
       delay: 1.3, // Slight delay for h2
     });
 
-    gsap.from("#content-right-avard-third", {
+     gsap.from("#content-right-avard-third", {
       x: 50,
       opacity: 0,
       ease: "power4.inOut",
       duration: 2,
       delay: 1.5, // Slight delay for h2
     });
-  }, 1500)
+  }, 10)
 }
 TextReveal();
 
@@ -165,26 +173,7 @@ window.onload = function () {
 };
 
 
-function headerScroll() {
-    const header = document.querySelector("header");
-    const headerHeight = header.offsetHeight;
-  
-    function adjustHeader() {
-        header.classList.toggle('scrolled', window.scrollY > 0);
-        if (window.scrollY >= 300) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-  
-        document.body.style.paddingTop = headerHeight + 'px'
-    }
-  
-    adjustHeader();
-  
-    window.addEventListener('scroll', adjustHeader)
-  }
-headerScroll();
+
 
 
 function skillReveal() {
